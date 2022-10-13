@@ -1,16 +1,19 @@
+import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import Moment from "react-moment";
+import { db } from "../utils/firebase";
 
-const cours = [
-    { name: 'Math', ponderation: 100, date: Date.now() },
-    { name: 'Physique', ponderation: 80, date: Date.now() },
-    { name: 'Biologie', ponderation: 80, date: Date.now() },
-    { name: 'Chimie', ponderation: 100, date: Date.now() },
-    // More people...
-]
 
-export default function TableauCours() {
+
+export default function TableauCours({ cours }) {
     const [form, setForm] = useState({ name: "", ponderation: 0 })
+    const [loading, setLoading] = useState(false);
+    const addCour = async () => {
+        const docRef = await addDoc(collection(db, "cours"), {
+            ...form
+        });
+        setForm({ name: "", ponderation: 0 })
+    }
     return (
         <div className="px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center">
@@ -123,15 +126,17 @@ export default function TableauCours() {
 
 
                         <div>
-                            <button
+
+                            {loading ? <>Encours ...</> : (<button
                                 onClick={(e) => {
                                     e.preventDefault();
+                                    addCour();
 
                                 }}
                                 className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
                                 Ajouter cours
-                            </button>
+                            </button>)}
                         </div>
 
 

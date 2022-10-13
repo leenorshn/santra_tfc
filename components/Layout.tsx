@@ -20,10 +20,10 @@ const Layout = ({ children }) => {
                 loading && <div>Loading ...</div>
             }
             {
-                currentUser ? <div className='w-screen flex min-h-screen bg-slate-200'>
+                currentUser ? <div className='w-screen flex h-screen bg-slate-200'>
                     <SideBar />
 
-                    <div className='flex-grow'>
+                    <div className='flex-grow overflow-y-auto'>
                         <div className=''>{children}</div>
                     </div>
                 </div> : <Login />

@@ -24,7 +24,7 @@ const navigation = [
     { name: 'Enseignants', href: '/enseignants', icon: UsersIcon, },
     { name: 'Eleves', href: '/eleves', icon: UserIcon, },
     { name: 'Cours', href: '/cours', icon: NewspaperIcon, },
-    { name: 'Classes', href: '/classes', icon: ArchiveBoxIcon, },
+    { name: 'Classes', href: '/classes', icon: FolderIcon, },
 
 
 ]

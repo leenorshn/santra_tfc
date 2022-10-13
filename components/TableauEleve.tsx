@@ -3,16 +3,9 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { useApp } from "../utils/AppContext";
 
-const people = [
-    { id: 1, name: 'Lindsay Walton', matricule: "001Ak1-90", genre: "homme", classe: "Troisieme", section: 'Scientifique', option: 'Bio-chimie' },
-    { id: 2, name: 'Victor Ndamiya', matricule: "001Ak0-90", genre: "homme", classe: "Quatrieme", section: 'Scientifique', option: 'Bio-chimie' },
-    { id: 3, name: 'Daniel kamala', matricule: "N0100S-90", genre: "femme", classe: "Troisieme", section: 'Scientifique', option: 'Bio-chimie' },
-    { id: 4, name: 'Katembo Muleka', matricule: "MS099-90", genre: "homme", classe: "Septieme", section: '', option: '' },
-    { id: 5, name: 'Tony katende', matricule: "MM1Ak-91", genre: "femme", classe: "Premiere", section: '', option: '' },
-    // More people...
-]
 
-export default function TableauEleve() {
+
+export default function TableauEleve({ eleves }) {
     const router = useRouter();
     const { setCurrentStudent } = useApp();
     return (
@@ -55,6 +48,12 @@ export default function TableauEleve() {
                                             scope="col"
                                             className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
                                         >
+                                            Matricule
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                        >
                                             Classe
                                         </th>
                                         <th
@@ -75,7 +74,7 @@ export default function TableauEleve() {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                    {people.map((person, i) => (
+                                    {eleves.map((person, i) => (
                                         <tr key={i} onClick={(e) => {
                                             e.preventDefault();
                                             console.log("clicked");
@@ -87,6 +86,7 @@ export default function TableauEleve() {
                                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                                 {person.name}
                                             </td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.matricule}</td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.classe}</td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.section}</td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.option}</td>

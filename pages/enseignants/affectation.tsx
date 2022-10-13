@@ -1,22 +1,42 @@
 import { TrashIcon } from '@heroicons/react/24/outline';
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react'
+import AlertDialog from '../../components/AlertDialog';
 import AttributionCours from '../../components/AttributionCours';
 import { useApp } from '../../utils/AppContext';
+import { db } from '../../utils/firebase';
 
 const Affectation = () => {
-    const { cours, removeCour } = useApp()
+    const { cours, removeCour, viderCours } = useApp()
     const [open, setOpen] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
     const { currentTeacher } = useApp()
+    const addCoursToEnseignant = async () => {
+        setLoading(true)
+        const enseigRef = doc(db, "enseignants", currentTeacher.phone);
+
+        // Set the "capital" field of the city 'DC'
+        await updateDoc(enseigRef, {
+            cours: arrayUnion(...cours)
+        });
+
+        viderCours()
+        setLoading(false);
+        setShowAlert(true);
+
+    }
     return (
         <div className='px-6 py-8'>
+            <AlertDialog show={showAlert} message={"Affection reussi"} setShow={setShowAlert} />
             <AttributionCours open={open} setOpen={setOpen} />
             <div className='py-3 px-8 shadow rounded-md bg-white'>
                 <div className='flex items-center justify-between'>
 
                     {currentTeacher && (<div className='flex space-x-4 items-center'>
-                        <Image src={currentTeacher.avatar} alt="" height={60} width={60} className='object-center rounded-full shadow' />
+                        <Image src={currentTeacher.avatar || "/profile.png"} alt="" height={60} width={60} className='object-center rounded-full shadow' />
 
                         <div>
                             <h2 className='text-lg font-bold text-slate-800'>{currentTeacher.name}</h2>
@@ -113,7 +133,12 @@ const Affectation = () => {
 
             </div>
             <div className='flex justify-end items-center mt-2'>
-                {cours && <button className='text-white bg-black py-2 px-5 rounded-md'>Enregistrer</button>}
+                {cours && <button
+                    onClick={(e) => {
+                        e.preventDefault();
+                        addCoursToEnseignant();
+                    }}
+                    className='text-white bg-black py-2 px-5 rounded-md'>Enregistrer</button>}
             </div>
 
         </div>
