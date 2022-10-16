@@ -26,4 +26,4 @@ const Cours = () => {
     )
 }
 
-export default Cours
+export default Cours;
