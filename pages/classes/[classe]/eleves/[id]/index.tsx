@@ -1,8 +1,8 @@
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import React, { useState } from 'react'
-import FormulairePoint from '../../../components/FormulairePoint';
-import TableauCote from '../../../components/TableauCote';
-import { useApp } from '../../../utils/AppContext';
+import FormulairePoint from '../../../../../components/FormulairePoint';
+import TableauCote from '../../../../../components/TableauCote';
+import { useApp } from '../../../../../utils/AppContext';
 
 const SingleEleve = () => {
     const { currentStudent } = useApp();

@@ -2,26 +2,15 @@ import { UserIcon } from "@heroicons/react/24/outline";
 import { addDoc, collection } from "firebase/firestore";
 import Link from "next/link";
 import { useState } from "react";
-import AlertDialog from "../../components/AlertDialog";
-import { db } from "../../utils/firebase";
+import AlertDialog from "../../../components/AlertDialog";
+import { useApp } from "../../../utils/AppContext";
+import { db } from "../../../utils/firebase";
 
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
+
 export default function Example() {
     const [loading, setLoading] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
+    const { currentClasse } = useApp()
     const [form, setForm] = useState({
         name: "",
         dateNaissance: "",
@@ -29,9 +18,10 @@ export default function Example() {
         classe: "7ieme",
         section: "",
         option: "",
-        matricule: ""
-
+        matricule: "",
+        classeRef: currentClasse.id
     })
+
     const inscrir = async () => {
         setLoading(true);
         const docRef = await addDoc(collection(db, "eleves"), {
@@ -46,7 +36,8 @@ export default function Example() {
             genre: "M",
             classe: "",
             section: "",
-            option: ""
+            option: "",
+            classeRef: currentClasse.id
         });
 
     }
@@ -59,7 +50,7 @@ export default function Example() {
                         <UserIcon className="text-blue-900 h-6 w-6" />
                         <h1 className="text-xl font-semibold text-slate-800">Inscription Eleves</h1>
                     </div>
-                    <Link href={"/eleves"}>
+                    <Link href={`/classes/${currentClasse.id}`}>
                         <button className="px-8 py-1 rounded-md bg-black text-white">Retour</button>
                     </Link>
                 </div>

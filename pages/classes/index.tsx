@@ -1,3 +1,4 @@
+import { EyeIcon } from "@heroicons/react/20/solid"
 import { TrashIcon } from "@heroicons/react/24/outline"
 import { addDoc, collection, deleteDoc, doc, onSnapshot, query } from "firebase/firestore"
 import { useRouter } from "next/router"
@@ -96,19 +97,25 @@ export default function Example() {
                                     </thead>
                                     <tbody className="divide-y divide-gray-200 bg-white">
                                         {classes.map((person, i) => (
-                                            <tr key={i} onClick={() => {
-                                                setCurrentClasse(person);
-                                                router.push(`/classes/${person.niveau + "-" + person.section + "-" + person.option}`)
-                                            }} className="cursor-pointer ">
+                                            <tr key={i} className="">
                                                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                                     {person.niveau}
                                                 </td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.section}</td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.option}</td>
 
-                                                <td className="flex justify-end pr-3">
+                                                <td className="flex justify-end py-3 space-x-3 pr-3">
+
                                                     <button
-                                                        className="cursor-pointer"
+                                                        className="cursor-pointer p-2 hover:rounded-full hover:bg-blue-50"
+                                                        onClick={() => {
+                                                            setCurrentClasse(person);
+                                                            router.push(`/classes/${person.id}`)
+                                                        }} >
+                                                        <EyeIcon className="h-6 w-6  text-blue-500" />
+                                                    </button>
+                                                    <button
+                                                        className="cursor-pointer p-2 hover:rounded-full hover:bg-red-50"
                                                         onClick={(e) => {
                                                             deleteM(person.id)
                                                         }} >

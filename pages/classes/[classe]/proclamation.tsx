@@ -1,77 +1,9 @@
-import { useApp } from "../../utils/AppContext"
-import Eleves from "../eleves"
+import React, { useState } from 'react'
 
-const classes = [
-    {
-        name: "Mumbere Kalendi",
-        place: 1,
-        pourcentage: 78
-
-    },
-    {
-        name: "Mumbere Alimasi",
-        place: 2,
-        pourcentage: 76.4
-
-    },
-    {
-        name: "Nadege Omalanga",
-        place: 3,
-        pourcentage: 71.9
-
-    },
-    {
-        name: "Magi kahiwa",
-        place: 4,
-        pourcentage: 70
-
-    },
-    {
-        name: "Darci Senga",
-        place: 5,
-        pourcentage: 63
-
-    },
-    {
-        name: "Mitera ndugo",
-        place: 6,
-        pourcentage: 60
-
-    },
-    {
-        name: "Shukuru Malonga",
-        place: 7,
-        pourcentage: 55
-
-    },
-    {
-        name: "Nadege Masasi",
-        place: 8,
-        pourcentage: 50
-
-    },
-    {
-        name: "Zawadi kahiwa",
-        place: 9,
-        pourcentage: 48
-
-    },
-
-
-
-]
-
-export default function Example() {
-    const { currentClasse } = useApp()
+const Proclamation = () => {
+    const [classes, setClasses] = useState([]);
     return (
-        <div className="px-4 sm:px-6 lg:px-8">
-            <div className="sm:flex sm:items-center">
-                <div className="sm:flex-auto mt-4 bg-white shadow rounded-lg px-8 py-4">
-                    <h1 className="text-xl font-semibold text-gray-900">Fiche de proclamation</h1>
-                    <p className="text-xs text-slate-500">{currentClasse.niveau}</p>
-                    <p className="text-xs text-slate-500">{currentClasse.section + "--" + currentClasse.option}</p>
-                </div>
-            </div>
+        <div>
             <div className="mt-8 flex flex-col">
                 <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -122,3 +54,4 @@ export default function Example() {
     )
 }
 
+export default Proclamation;

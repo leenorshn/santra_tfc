@@ -8,6 +8,7 @@ type Cours = {
     ponderation: number
 }
 type Classe = {
+    id?: string
     niveau: string
     section: string
     option: string

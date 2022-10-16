@@ -22,11 +22,8 @@ import { useAuth } from '../utils/AuthContext'
 const navigation = [
     { name: 'Accueil', href: '/', icon: HomeIcon, },
     { name: 'Enseignants', href: '/enseignants', icon: UsersIcon, },
-    { name: 'Eleves', href: '/eleves', icon: UserIcon, },
     { name: 'Cours', href: '/cours', icon: NewspaperIcon, },
     { name: 'Classes', href: '/classes', icon: FolderIcon, },
-
-
 ]
 
 
