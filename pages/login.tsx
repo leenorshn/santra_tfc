@@ -2,16 +2,18 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import LoginDirector from '../components/LoginDirector'
 import LoginEnseignant from '../components/LoginEnseignant'
+const imgUrl = "/malkiya.jfif"
 
 const Login = () => {
     const [showDirector, setShowDirector] = useState(false)
     const [showEnseigant, setShowEnseignant] = useState(false)
 
+
     return (
         <div className='h-screen'>
             <div className='flex'>
                 <div className='w-1/2 h-screen relative'>
-                    <Image src={"/malkiya.jfif"} alt="relative" className='object-center' layout='fill' />
+                    <Image src={imgUrl} alt="relative" className='object-center' layout='fill' />
                 </div>
 
                 {!showDirector && !showEnseigant ? (<div className="bg-white">
