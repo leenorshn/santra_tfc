@@ -44,8 +44,8 @@ export default function TableEnseignant() {
                         </div>
                         <Image height={40} width={40} className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src={person.avatar || "/profile.png"} alt="" />
                     </div>
-                    <div className='flex justify-between items-center px-4'>
-                        <button>Modifier</button>
+                    <div className='flex justify-end items-center px-4'>
+
 
                         <button
                             onClick={(e) => {

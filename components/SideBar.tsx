@@ -20,7 +20,7 @@ import Link from 'next/link'
 import { useAuth } from '../utils/AuthContext'
 
 const navigation = [
-    { name: 'Dashbord', href: '/', icon: HomeIcon, },
+    { name: 'Accueil', href: '/', icon: HomeIcon, },
     { name: 'Enseignants', href: '/enseignants', icon: UsersIcon, },
     { name: 'Eleves', href: '/eleves', icon: UserIcon, },
     { name: 'Cours', href: '/cours', icon: NewspaperIcon, },
